@@ -1,0 +1,645 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calling tutorial JS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+                pre, code, tt {
+                    font-size: 12px;
+                    font-family: Consolas, "Liberation Mono", Courier, monospace;
+                }
+
+                code, tt {
+                    margin: 0 0px;
+                    padding: 0px 0px;
+                    white-space: nowrap;
+                    border: 1px solid #eaeaea;
+                    background-color: #f8f8f8;
+                    border-radius: 3px;
+                }
+
+                pre > code {
+                    margin: 0;
+                    padding: 0;
+                    white-space: pre;
+                    border: none;
+                    background: transparent;
+                }
+
+                pre {
+                    background-color: #f8f8f8;
+                    border: 1px solid #ccc;
+                    font-size: 13px;
+                    line-height: 19px;
+                    overflow: auto;
+                    padding: 6px 10px;
+                    border-radius: 3px;
+                }
+
+                    pre code, pre tt {
+                        background-color: transparent;
+                        border: none;
+                    }
+
+                kbd {
+                    -moz-border-bottom-colors: none;
+                    -moz-border-left-colors: none;
+                    -moz-border-right-colors: none;
+                    -moz-border-top-colors: none;
+                    background-color: #DDDDDD;
+                    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+                    background-repeat: repeat-x;
+                    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+                    border-image: none;
+                    border-radius: 2px 2px 2px 2px;
+                    border-style: solid;
+                    border-width: 1px;
+                    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                    line-height: 10px;
+                    padding: 1px 4px;
+                }
+    </style>
+    <style type="text/css">
+        .highlight {
+            background: #ffffff;
+        }
+
+            .highlight .c {
+                color: #999988;
+                font-style: italic;
+            }
+            /* Comment */
+            .highlight .err {
+                color: #a61717;
+                background-color: #e3d2d2;
+            }
+            /* Error */
+            .highlight .k {
+                font-weight: bold;
+            }
+            /* Keyword */
+            .highlight .o {
+                font-weight: bold;
+            }
+            /* Operator */
+            .highlight .cm {
+                color: #999988;
+                font-style: italic;
+            }
+            /* Comment.Multiline */
+            .highlight .cp {
+                color: #999999;
+                font-weight: bold;
+            }
+            /* Comment.Preproc */
+            .highlight .c1 {
+                color: #999988;
+                font-style: italic;
+            }
+            /* Comment.Single */
+            .highlight .cs {
+                color: #999999;
+                font-weight: bold;
+                font-style: italic;
+            }
+            /* Comment.Special */
+            .highlight .gd {
+                color: #000000;
+                background-color: #ffdddd;
+            }
+                /* Generic.Deleted */
+                .highlight .gd .x {
+                    color: #000000;
+                    background-color: #ffaaaa;
+                }
+            /* Generic.Deleted.Specific */
+            .highlight .ge {
+                font-style: italic;
+            }
+            /* Generic.Emph */
+            .highlight .gr {
+                color: #aa0000;
+            }
+            /* Generic.Error */
+            .highlight .gh {
+                color: #999999;
+            }
+            /* Generic.Heading */
+            .highlight .gi {
+                color: #000000;
+                background-color: #ddffdd;
+            }
+                /* Generic.Inserted */
+                .highlight .gi .x {
+                    color: #000000;
+                    background-color: #aaffaa;
+                }
+            /* Generic.Inserted.Specific */
+            .highlight .go {
+                color: #888888;
+            }
+            /* Generic.Output */
+            .highlight .gp {
+                color: #555555;
+            }
+            /* Generic.Prompt */
+            .highlight .gs {
+                font-weight: bold;
+            }
+            /* Generic.Strong */
+            .highlight .gu {
+                color: #aaaaaa;
+            }
+            /* Generic.Subheading */
+            .highlight .gt {
+                color: #aa0000;
+            }
+            /* Generic.Traceback */
+            .highlight .kc {
+                font-weight: bold;
+            }
+            /* Keyword.Constant */
+            .highlight .kd {
+                font-weight: bold;
+            }
+            /* Keyword.Declaration */
+            .highlight .kp {
+                font-weight: bold;
+            }
+            /* Keyword.Pseudo */
+            .highlight .kr {
+                font-weight: bold;
+            }
+            /* Keyword.Reserved */
+            .highlight .kt {
+                color: #445588;
+                font-weight: bold;
+            }
+            /* Keyword.Type */
+            .highlight .m {
+                color: #009999;
+            }
+            /* Literal.Number */
+            .highlight .s {
+                color: #d14;
+            }
+            /* Literal.String */
+            .highlight .na {
+                color: #008080;
+            }
+            /* Name.Attribute */
+            .highlight .nb {
+                color: #0086B3;
+            }
+            /* Name.Builtin */
+            .highlight .nc {
+                color: #445588;
+                font-weight: bold;
+            }
+            /* Name.Class */
+            .highlight .no {
+                color: #008080;
+            }
+            /* Name.Constant */
+            .highlight .ni {
+                color: #800080;
+            }
+            /* Name.Entity */
+            .highlight .ne {
+                color: #990000;
+                font-weight: bold;
+            }
+            /* Name.Exception */
+            .highlight .nf {
+                color: #990000;
+                font-weight: bold;
+            }
+            /* Name.Function */
+            .highlight .nn {
+                color: #555555;
+            }
+            /* Name.Namespace */
+            .highlight .nt {
+                color: #000080;
+            }
+            /* Name.Tag */
+            .highlight .nv {
+                color: #008080;
+            }
+            /* Name.Variable */
+            .highlight .ow {
+                font-weight: bold;
+            }
+            /* Operator.Word */
+            .highlight .w {
+                color: #bbbbbb;
+            }
+            /* Text.Whitespace */
+            .highlight .mf {
+                color: #009999;
+            }
+            /* Literal.Number.Float */
+            .highlight .mh {
+                color: #009999;
+            }
+            /* Literal.Number.Hex */
+            .highlight .mi {
+                color: #009999;
+            }
+            /* Literal.Number.Integer */
+            .highlight .mo {
+                color: #009999;
+            }
+            /* Literal.Number.Oct */
+            .highlight .sb {
+                color: #d14;
+            }
+            /* Literal.String.Backtick */
+            .highlight .sc {
+                color: #d14;
+            }
+            /* Literal.String.Char */
+            .highlight .sd {
+                color: #d14;
+            }
+            /* Literal.String.Doc */
+            .highlight .s2 {
+                color: #d14;
+            }
+            /* Literal.String.Double */
+            .highlight .se {
+                color: #d14;
+            }
+            /* Literal.String.Escape */
+            .highlight .sh {
+                color: #d14;
+            }
+            /* Literal.String.Heredoc */
+            .highlight .si {
+                color: #d14;
+            }
+            /* Literal.String.Interpol */
+            .highlight .sx {
+                color: #d14;
+            }
+            /* Literal.String.Other */
+            .highlight .sr {
+                color: #009926;
+            }
+            /* Literal.String.Regex */
+            .highlight .s1 {
+                color: #d14;
+            }
+            /* Literal.String.Single */
+            .highlight .ss {
+                color: #990073;
+            }
+            /* Literal.String.Symbol */
+            .highlight .bp {
+                color: #999999;
+            }
+            /* Name.Builtin.Pseudo */
+            .highlight .vc {
+                color: #008080;
+            }
+            /* Name.Variable.Class */
+            .highlight .vg {
+                color: #008080;
+            }
+            /* Name.Variable.Global */
+            .highlight .vi {
+                color: #008080;
+            }
+            /* Name.Variable.Instance */
+            .highlight .il {
+                color: #009999;
+            }
+        /* Literal.Number.Integer.Long */
+        .task-list {
+            padding-left: 10px;
+            margin-bottom: 0;
+        }
+
+            .task-list li {
+                margin-left: 20px;
+            }
+
+        .task-list-item {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+
+            .task-list-item label {
+                font-weight: 400;
+            }
+
+            .task-list-item.enabled label {
+                cursor: pointer;
+            }
+
+            .task-list-item + .task-list-item {
+                margin-top: 3px;
+            }
+
+        .task-list-item-checkbox {
+            display: inline-block;
+            margin-left: -20px;
+            margin-right: 3px;
+            vertical-align: 1px;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="http://tutorial.sinch.com/index.css">
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-50667467-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body>
+    <div id="sidebar">
+        <a href="http://www.sinch.com"><img id=logo src="http://tutorial.sinch.com/logo.png" /></a>
+
+        <div id="sinch-signup">
+            <div id="mailing-list-text">Would you like to hear<br /> about future tuturials?</div>
+            <a href="http://www.sinch.com/dashboard/#/signup" id="sinch-signup-button" target="_blank">YES!</a>
+        </div>
+        <div id="tweet">
+            Questions?
+            <a href="https://twitter.com/intent/tweet?screen_name=SinchDev&text=I%20have%20a%20question%20about%20your%20Android%20messaging%20tutorial!" class="twitter-mention-button" data-related="SinchDev">Tweet to @SinchDev</a>
+            <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        </div>
+    </div>
+
+    <div id="wrapper">
+	<h1>Using Sinch JS SDK to call a phone number</h1>
+
+<p>In this tutorial you will build an app to call a regular phone number from your browser. This is a pretty sweet feature that can be used, for example, to enable your users to call hotels in a different country cheaply and conveniently.</p>
+
+<p>Application flow:<br>
+Flow A: Register user -&gt; place a call <strong>or</strong> <br>
+Flow B: Login -&gt; place a call</p>
+
+<h2>Setup</h2>
+
+<ol class="task-list">
+<li>If you don’t have a Sinch developer account, please sign up and register a new app at 
+<a href="http://www.sinch.com/signup" target="_blank">www.sinch.com/signup</a>
+</li>
+<li>Download the SDK from <a href="www.sinch.com/js-sdk" title="Download JS-SDK" target="_blank">www.sinch.com/js-sdk</a>
+</li>
+</ol><p>Create an index.html file with references to jQuery and the Sinch JavaScript SDK. Also, to get some basic css, you will use bootstrap.</p>
+
+<div class="highlight highlight-html"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Call sinch<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/script&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"sinch.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> 
+    <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+</pre></div>
+
+<h2>Adding UI for Login and User Registration</h2>
+
+<p>You don't want anonymous users to be able to just go to your site and make a call without being logged in (the SinchClient requires a user or token). For this tutorial, you will use a very basic backend for user management to get, started. You should not use this in a production environment. In production you should use your own user authentication. You can find a .net sample project here <a href="https://github.com/sinch/net-backend-sample" title=".Net backend tutorial" target="_blank">https://tutorials.sinch.com/net-backend-sample</a></p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"auth"</span> <span class="na">class=</span><span class="s">"col-md-6"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>Login or register<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">"userForm"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"username"</span> <span class="na">placeholder=</span><span class="s">"username"</span><span class="nt">&gt;&lt;br&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"password"</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">placeholder=</span><span class="s">"password"</span><span class="nt">&gt;&lt;br&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"loginUser"</span><span class="nt">&gt;</span>Login<span class="nt">&lt;/button&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"createUser"</span><span class="nt">&gt;</span>Create<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/form&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"call"</span> <span class="na">class=</span><span class="s">"col-md-6"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;h2&gt;</span>Make a call<span class="nt">&lt;/h2&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"phoneNumber"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"callNumber"</span><span class="nt">&gt;</span>Call<span class="nt">&lt;/button&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span> <span class="na">id=</span><span class="s">"error"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+
+<p>Next you need to create or login the user. <br>
+1. Add a sinch client variable with your application key.<br>
+2. Hook up register button to a click event.<br>
+3. Hook up the login button to a click event.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">language</span><span class="o">=</span><span class="s2">"javascript"</span><span class="o">&gt;</span>
+<span class="nx">$</span><span class="p">(</span><span class="s2">"#call"</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span> <span class="c1">//hide the call ui</span>
+<span class="c1">//1. Set up sinchClient</span>
+<span class="kd">var</span> <span class="nx">sinchClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SinchClient</span><span class="p">({</span>
+    <span class="nx">applicationKey</span><span class="o">:</span> <span class="s1">'&lt;your application key&gt;'</span><span class="p">,</span>
+    <span class="nx">capabilities</span><span class="o">:</span> <span class="p">{</span> <span class="nx">calling</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+    <span class="p">},</span>
+<span class="p">});</span>
+<span class="c1">//2. Create user and start sinch for that user</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'button#createUser'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">clearError</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'button#loginUser'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'button#createUser'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">signUpObj</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">signUpObj</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'input#username'</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="nx">signUpObj</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'input#password'</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="c1">//Use Sinch SDK to create a new user</span>
+    <span class="nx">sinchClient</span><span class="p">.</span><span class="nx">newUser</span><span class="p">(</span><span class="nx">signUpObj</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">ticket</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//On success, start the client</span>
+        <span class="nx">sinchClient</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="nx">ticket</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">global_username</span> <span class="o">=</span> <span class="nx">signUpObj</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+            <span class="c1">//On success, show the UI</span>
+        <span class="p">})</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+<span class="c1">//3. Login user and and start client</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'button#loginUser'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">clearError</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'button#loginUser'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'button#createUser'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">signInObj</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">signInObj</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'input#username'</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+    <span class="nx">signInObj</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'input#password'</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+
+    <span class="c1">//Use Sinch SDK to authenticate a user</span>
+    <span class="nx">sinchClient</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="nx">signInObj</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">global_username</span> <span class="o">=</span> <span class="nx">signInObj</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+        <span class="c1">//On success, show the UI</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+</pre></div>
+
+<h2>Handle errors</h2>
+
+<p>Its a good idea to take care of errors when you try and login to the client. To handle errors add a small error handler:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">handleError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Enable buttons</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'button#createUser'</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'button#loginUser'</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="c1">//Show error</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#error'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#error'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Next add a error <code>&lt;div&gt;</code> to the bottom on the page: </p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-md-12"</span> <span class="na">id=</span><span class="s">"error"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p>Add fail functionality sinchClient.newUser like below:</p>
+
+<div class="highlight highlight-javascript"><pre> <span class="nx">sinchClient</span><span class="p">.</span><span class="nx">newUser</span><span class="p">(</span><span class="nx">signUpObj</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ticket</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//On success, start the client</span>
+        <span class="nx">sinchClient</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="nx">ticket</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">global_username</span> <span class="o">=</span> <span class="nx">signUpObj</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+        <span class="c1">//On success, show the UI</span>
+    <span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="nx">handleError</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="nx">handleError</span><span class="p">);</span>
+</pre></div>
+
+<p>Then, do the same for the login button: </p>
+
+<div class="highlight highlight-javascript"><pre><span class="c1">//Use Sinch SDK to authenticate a user</span>
+<span class="nx">sinchClient</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="nx">signInObj</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="nx">global_username</span> <span class="o">=</span> <span class="nx">signInObj</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+<span class="c1">//On success, show the UI</span>
+<span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="nx">handleError</span><span class="p">);</span>
+</pre></div>
+
+<p>Tidy up a bit by creating an clearError function and call it in your onClick handlers.</p>
+
+<div class="highlight highlight-javascript"><pre>    <span class="kd">var</span> <span class="nx">clearError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#error'</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#error'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span>
+</pre></div>
+
+<h2>Add Calling UI</h2>
+
+<p>When the user has successfully logged in, you want to show a UI to make a call. Create a function to hide the login UI and show a calling UI:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">showUI</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#auth'</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#call'</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span>
+</pre></div>
+
+<p>Add a call to showUI() by replacing the comments <code>//On success, show the UI</code></p>
+
+<h2>Making a call</h2>
+
+<p>To make a call, you will need a couple more elements in your call div. Add the following into <code>&lt;div id="call"&gt;</code>.</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"hangupCall"</span> <span class="na">style=</span><span class="s">"display: none"</span><span class="nt">&gt;</span>Hangup<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;audio</span> <span class="na">id=</span><span class="s">"incoming"</span> <span class="na">autoplay</span><span class="nt">&gt;&lt;/audio&gt;</span>
+<span class="nt">&lt;audio</span> <span class="na">id=</span><span class="s">"ringtone"</span> <span class="na">src=</span><span class="s">"ringtone.wav"</span> <span class="na">loop</span> <span class="nt">&gt;&lt;/audio&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"status"</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+<p>Next, add a click handler for the call button: </p>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">callClient</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">call</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#callNumber'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">callClient</span> <span class="o">=</span> <span class="nx">sinchClient</span><span class="p">.</span><span class="nx">getCallClient</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#callNumber'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="s1">'disabled'</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">'#phoneNumber'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">,</span> <span class="s1">'disabled'</span><span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">"#hangupCall"</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+    <span class="nx">call</span> <span class="o">=</span> <span class="nx">callClient</span><span class="p">.</span><span class="nx">callPhoneNumber</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">'#phoneNumber'</span><span class="p">).</span><span class="nx">val</span><span class="p">());</span>
+    <span class="nx">call</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">callListeners</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>As you can see, you are missing event handlers for the call. A call can be in three states: <em>inprogress</em>, <em>established</em>, and <em>ended</em>; they occur in that order. What you want to do now is the following:</p>
+
+<ol class="task-list">
+<li> When call is in progress, play a ringtone just like you hear on your regular phone.</li>
+<li> When the call is established (someone picked up or you are connected to their voicemail), you want to stop playing the ringtone and play sound from the call instead.</li>
+<li> When the call is ended, you want to shut down the audio from the call, and change the UI so the user can place a new call. In addition, your app will display some details about the call, like the duration.</li>
+</ol><div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">callListeners</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//1. start playing sound and display status</span>
+    <span class="nx">onCallProgressing</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">call</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#ringtone'</span><span class="p">).</span><span class="nx">prop</span><span class="p">(</span><span class="s2">"currentTime"</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#ringtone'</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">"play"</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#status'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div id="stats"&gt;Ringing...&lt;/div&gt;'</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="c1">//2. Call is pickedup (or voicemail)</span>
+    <span class="nx">onCallEstablished</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">call</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'audio#incoming'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'src'</span><span class="p">,</span> <span class="nx">call</span><span class="p">.</span><span class="nx">incomingStreamURL</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'audio#ringtone'</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">"pause"</span><span class="p">);</span>
+        <span class="c1">//Report call stats</span>
+        <span class="kd">var</span> <span class="nx">callDetails</span> <span class="o">=</span> <span class="nx">call</span><span class="p">.</span><span class="nx">getDetails</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#status'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div id="stats"&gt;Answered at: '</span> 
+        <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">callDetails</span><span class="p">.</span><span class="nx">establishedTime</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="c1">//3. Call ended, stop all sounds, and revert back</span>
+    <span class="nx">onCallEnded</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">call</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/** you need to make sure the ringback is not </span>
+<span class="cm">        playing incase the call ended from progress (no answer)**/</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'audio#ringtone'</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">"pause"</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'audio#incoming'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'src'</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#callNumber'</span><span class="p">).</span><span class="nx">removeAttr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'input#phoneNumber'</span><span class="p">).</span><span class="nx">removeAttr</span><span class="p">(</span><span class="s1">'disabled'</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">"#hangupCall"</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="c1">//Report call stats</span>
+        <span class="kd">var</span> <span class="nx">callDetails</span> <span class="o">=</span> <span class="nx">call</span><span class="p">.</span><span class="nx">getDetails</span><span class="p">();</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#status'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div id="stats"&gt;Ended: '</span>
+        <span class="o">+</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">callDetails</span><span class="p">.</span><span class="nx">endedTime</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#status'</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div id="stats"&gt;Duration (s): '</span> 
+        <span class="o">+</span> <span class="nx">callDetails</span><span class="p">.</span><span class="nx">duration</span> <span class="o">+</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">);</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">'#status'</span><span class="p">)</span>
+          <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div id="stats"&gt;End cause: '</span> <span class="o">+</span> <span class="nx">callDetails</span><span class="p">.</span><span class="nx">endCause</span> <span class="o">+</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">call</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">$</span><span class="p">(</span><span class="s1">'div#callLog'</span><span class="p">)</span>
+          <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'&lt;div id="stats"&gt;Failure message: '</span> <span class="o">+</span> <span class="nx">call</span><span class="p">.</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="o">+</span> <span class="s1">'&lt;/div&gt;'</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+<h2>Hang Up button</h2>
+
+<p>Last but not least, add a click handler for the hang up button:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#hangupCall'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="nx">call</span> <span class="o">&amp;&amp;</span> <span class="nx">call</span><span class="p">.</span><span class="nx">hangup</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+
+<h2>Run it</h2>
+
+<p>Either you push this file to a webserver or run it locally. To give chrome access to your microphone you need to launch it with with the flag --allow-file-access-from-files<br>
+On Windows open a command prompt and type <br><code>pathtochrome%\chrome yourfilename.html --allow-file-access-from-files</code><br>
+on Mac <br><code>open -a Google\Chrome yourfilename.html --allow-file-access-from-files</code><br>
+Make sure chrome is completly shut down for it to work.<br>
+Complete source code can be found at <a href="https://github.com/sinch/js-calling-tutorial" target="_blank">https://github.com/sinch/js-calling-tutorial</a></p>
+
+<h2>Summary</h2>
+
+<p>Now you have a good understanding of how the Sinch client works, and how to make a call with the Sinch client. The next steps will be to add your own authentication and make it more secure with the Sinch REST API.</p>
+
+<p>Further reading:</p>
+
+<ul class="task-list">
+<li><a href="http://tutorial.sinch.com/net-backend-sample" target="_blank">Custom authentication with .net</a></li>
+<li><a href="http://tutorial.sinch.com/js-messaging-tutorial/" target="_blank">Use the sinch JS SDK to build a messaging app</a></li></ul>
+    </div>
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
