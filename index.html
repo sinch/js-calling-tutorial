@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Call sinch</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+    </script>
+    <script src="sinch.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <div id="auth" class="col-md-6">
+            <h2>Login or register</h2>
+            <form id="userForm">
+                <input id="username" placeholder="username"><br>
+                <input id="password" type="password" placeholder="password"><br>
+                <button id="loginUser">Login</button>
+                <button id="createUser">Create</button>
+            </form>
+        </div>
+        <div id="call" class="col-md-6">
+            <h2>Make a call</h2>
+            <input type="text" id="phoneNumber" />
+            <button id="callNumber">Call</button>
+            <button id="hangupCall" style="display: none">Hangup</button>
+            <audio id="incoming" autoplay></audio>
+            <audio id="ringtone" src="ringtone.wav" loop ></audio>
+            <div id="status"></div>
+        </div>
+        <div class="col-md-12" id="error"></div>
+    </div>
+
+
+    <script language="javascript">
+        $("#call").hide(); //hide the call ui
+        //2. Set up sinchClient
+        var sinchClient = new SinchClient({
+            applicationKey: '<yourkey>',
+            capabilities: { calling: true },
+            onLogMessage: function (message) {
+                console.log(message);
+            },
+        });
+        //3. Create user and start sinch for that user
+        $('button#createUser').on('click', function (event) {
+            event.preventDefault();
+            clearError();
+            $('button#loginUser').attr('disabled', true);
+            $('button#createUser').attr('disabled', true);
+            var signUpObj = {};
+            signUpObj.username = $('input#username').val();
+            signUpObj.password = $('input#password').val();
+            //Use Sinch SDK to create a new user
+            sinchClient.newUser(signUpObj, function (ticket) {
+                //On success, start the client
+                sinchClient.start(ticket, function () {
+                    //On success, show the UI
+                    showUI();
+                }).fail(handleError);
+            }).fail(handleError);
+        });
+        // 4 Login user and and start client
+        $('button#loginUser').on('click', function (event) {
+            event.preventDefault();
+            clearError();
+            $('button#loginUser').attr('disabled', true);
+            $('button#createUser').attr('disabled', true);
+            var signInObj = {};
+            signInObj.username = $('input#username').val();
+            signInObj.password = $('input#password').val();
+
+            //Use Sinch SDK to authenticate a user
+            sinchClient.start(signInObj, function () {
+                //On success, show the UI
+                showUI();
+            }).fail(handleError);
+        });
+
+        var callClient;
+        var call;
+        $('#callNumber').click(function (event) {
+            event.preventDefault();
+            callClient = sinchClient.getCallClient();
+            $('#callNumber').attr('disabled', 'disabled');
+            $('#phoneNumber').attr('disabled', 'disabled');
+            $("#hangupCall").show();
+
+            call = callClient.callPhoneNumber($('#phoneNumber').val());
+            call.addEventListener(callListeners);
+        });
+
+        $('#hangupCall').click(function (event) {
+            event.preventDefault();
+            call && call.hangup();
+        });
+        var callListeners = {
+            //1. start playing sound and display status
+            onCallProgressing: function (call) {
+                $('#ringtone').prop("currentTime", 0);
+                $('#ringtone').trigger("play");
+                $('#status').append('<div id="stats">Ringing...</div>');
+            },
+            //2. Call is pickedup (or voicemail)
+            onCallEstablished: function (call) {
+                $('audio#incoming').attr('src', call.incomingStreamURL);
+                $('audio#ringtone').trigger("pause");
+
+                //Report call stats
+                var callDetails = call.getDetails();
+                $('#status').append('<div id="stats">Answered at: ' + new Date(callDetails.establishedTime) + '</div>');
+            },
+            //3. Call ended, stop all sounds, and revert back
+            onCallEnded: function (call) {
+                // you need to make sure the ringback is not playing incase the call ended from progress (no answer)
+                $('audio#ringtone').trigger("pause");
+                $('audio#incoming').attr('src', '');
+                $('#callNumber').removeAttr('disabled');
+                $('input#phoneNumber').removeAttr('disabled');
+                $("#hangupCall").hide();
+                //Report call stats
+                var callDetails = call.getDetails();
+                $('#status').append('<div id="stats">Ended: ' + new Date(callDetails.endedTime) + '</div>');
+                $('#status').append('<div id="stats">Duration (s): ' + callDetails.duration + '</div>');
+                $('#status').append('<div id="stats">End cause: ' + callDetails.endCause + '</div>');
+                if (call.error) {
+                    $('div#callLog').append('<div id="stats">Failure message: ' + call.error.message + '</div>');
+                }
+            }
+        };
+
+        var handleError = function (error) {
+            //Enable buttons
+            $('button#createUser').prop('disabled', false);
+            $('button#loginUser').prop('disabled', false);
+            //Show error
+            $('#error').text(error.message);
+            $('#error').show();
+        }
+        var clearError = function () {
+            $('#error').text('');
+            $('#error').show();
+        }
+
+        var showUI = function () {
+            $('#auth').hide();
+            $('#call').show();
+        }
+    </script>
+</body>
+</html>
