@@ -1,2 +1,2 @@
-A tutorial that will walk you through building a web based phonne client for the web
-see http://tutorial.sinch.com/js-calling-tutorial
+A tutorial that will walk you through building a web based phone client for the web.
+See http://tutorial.sinch.com/js-calling-tutorial
