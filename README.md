@@ -246,6 +246,6 @@ Complete source code can be found at [https://github.com/sinch/js-calling-tutori
 Now you have a good understanding of how the Sinch client works, and how to make a call with the Sinch client. The next steps will be to add your own authentication and make it more secure with the Sinch REST API.
 
 Further reading:
-- [Custom authentication with .net](http://tutorial.sinch.com/net-backend-sample)
-- [Use the sinch JS SDK to build a messaging app](http://tutorial.sinch.com/js-messaging-tutorial/)
+- [Custom authentication with .net](http://www.sinch.com/tutorials/using-delegated-security-application-server-using-c-sinch-sdk/)
+- [Use the sinch JS SDK to build a messaging app](http://www.sinch.com/tutorials/build-instant-messaging-app-sinch-javascript/)
 
