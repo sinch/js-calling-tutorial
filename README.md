@@ -28,7 +28,7 @@ Create an index.html file with references to jQuery and the Sinch JavaScript SDK
 
 
 ## Adding UI for Login and User Registration
-You don't want anonymous users to be able to just go to your site and make a call without being logged in (the SinchClient requires a user or token). For this tutorial, you will use a very basic backend for user management to get, started. You should not use this in a production environment. In production you should use your own user authentication. You can find a .net sample project here [http://www.sinch.com/tutorials/using-delegated-security-application-server-using-c-sinch-sdk/](https://github.com/sinch/net-backend-sample)
+You don't want anonymous users to be able to just go to your site and make a call without being logged in (the SinchClient requires a user or token). For this tutorial, you will use a very basic backend for user management to get, started. You should not use this in a production environment. In production you should use your own user authentication. You can find a [.net sample project here](https://github.com/sinch/net-backend-sample)
 
 ```html
 <div class="container">
