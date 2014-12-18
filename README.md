@@ -238,8 +238,8 @@ Either you push this file to a webserver or run it locally. To give chrome acces
 On Windows open a command prompt and type 
 ```pathtochrome%\chrome yourfilename.html --allow-file-access-from-files```
 on Mac 
-```open -a Google\Chrome yourfilename.html --allow-file-access-from-files```
-Make sure chrome is completly shut down for it to work.
+```open -a Google\Chrome yourfilename.html --args --allow-file-access-from-files```
+For this to work, make sure to quit chrome completely before re-opening from the command line.
 Complete source code can be found at [https://github.com/sinch/js-calling-tutorial](https://github.com/sinch/js-calling-tutorial)
 
 ## Summary
