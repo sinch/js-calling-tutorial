@@ -1,16 +1,16 @@
-# Using Sinch JS SDK to call a phone number
-In this tutorial you will build an app to call a regular phone number from your browser. This is a pretty sweet feature that can be used, for example, to enable your users to call hotels in a different country cheaply and conveniently.
+# Using Sinch JS SDK to Call a Phone Number
+In this tutorial, you will build an app to call a regular phone number from your browser. This is a pretty sweet feature that can, for example, enable your users to call hotels in a different country cheaply and conveniently.
  
-Application flow:
-Flow A: Register user -> place a call **or** 
+Application flow:<br>
+Flow A: Register user -> place a call <br>**or** <br>
 Flow B: Login -> place a call
 
 ## Setup
-1. If you don’t have a Sinch developer account, please sign up and register a new app at 
-[www.sinch.com/signup](http://www.sinch.com/signup)
+1. If you don’t have a Sinch developer account, please [sign up and register a new app]
+(http://www.sinch.com/signup)
 2. Download the SDK from [www.sinch.com/js-sdk](https://www.sinch.com/js-sdk "Download JS-SDK")
 
-Create an index.html file with references to jQuery and the Sinch JavaScript SDK. Also, to get some basic css, you will use bootstrap.
+Create an index.html file with references to jQuery and the Sinch JavaScript SDK. Also, to get some basic CSS, you will use bootstrap.
 
 ```html
 <!DOCTYPE html>
@@ -27,8 +27,8 @@ Create an index.html file with references to jQuery and the Sinch JavaScript SDK
 ```
 
 
-## Adding UI for Login and User Registration
-You don't want anonymous users to be able to just go to your site and make a call without being logged in (the SinchClient requires a user or token). For this tutorial, you will use a very basic backend for user management to get, started. You should not use this in a production environment. In production you should use your own user authentication. You can find a [.net sample project here](https://github.com/sinch/net-backend-sample)
+## Adding UI for login and user registration
+You don't want anonymous users to be able to go to your site and make a call without being logged in. (The SinchClient requires a user or token.) For this tutorial, you will use a very basic backend for user management to get started. You should not use this in a production environment. In production, you should use your own user authentication. You can find a [.net sample project here](https://github.com/sinch/net-backend-sample).
 
 ```html
 <div class="container">
@@ -50,10 +50,11 @@ You don't want anonymous users to be able to just go to your site and make a cal
 </div>
 ```
 
-Next you need to create or login the user. 
-1. Add a sinch client variable with your application key.
-2. Hook up register button to a click event.
-3. Hook up the login button to a click event.
+Next, you need to register or log in the user.
+ 
+1. Add a Sinch client variable with your application key
+2. Hook up register button to a click event
+3. Hook up the login button to a click event
 
 ```javascript
 <script language="javascript">
@@ -102,7 +103,7 @@ $('button#loginUser').on('click', function (event) {
 ```
 
 ## Handle errors
-Its a good idea to take care of errors when you try and login to the client. To handle errors add a small error handler:
+It’s a good idea to take care of errors when you try to log in to the client. To handle errors, add a small error handler:
 ```javascript
 var handleError = function(error) {
     //Enable buttons
@@ -113,10 +114,10 @@ var handleError = function(error) {
     $('#error').show();
 }
 ```
-Next add a error `<div>` to the bottom on the page: 
+Next, add an error `<div>` to the bottom on the page: 
 ```html
 <div class="col-md-12" id="error"></div>
-```
+```<br>
 Add fail functionality sinchClient.newUser like below:
 ```javascript
  sinchClient.newUser(signUpObj, function(ticket) {
@@ -144,7 +145,7 @@ Tidy up a bit by creating an clearError function and call it in your onClick han
 ```
 
 
-## Add Calling UI
+## Add calling UI
 When the user has successfully logged in, you want to show a UI to make a call. Create a function to hide the login UI and show a calling UI:
 ```javascript
 var showUI = function () {
@@ -176,11 +177,11 @@ $('#callNumber').click(function (event) {
     call.addEventListener(callListeners);
 });
 ```
-As you can see, you are missing event handlers for the call. A call can be in three states: *inprogress*, *established*, and *ended*; they occur in that order. What you want to do now is the following:
+As you can see, you are missing event handlers for the call. A call can be in three states: *inprogress*, *established* and *ended*; they occur in that order. You’ll want to do the following:
 
-1.	When call is in progress, play a ringtone just like you hear on your regular phone.
-2.	When the call is established (someone picked up or you are connected to their voicemail), you want to stop playing the ringtone and play sound from the call instead.
-3.	When the call is ended, you want to shut down the audio from the call, and change the UI so the user can place a new call. In addition, your app will display some details about the call, like the duration.
+1.	When call is in progress, play a ringtone like you hear on your regular phone
+2.	When the call is established (someone has picked up or you are connected to their voicemail), stop playing the ringtone and instead play sound from the call
+3.	When the call has ended, shut down the audio from the call and change the UI so the user can place a new call. In addition, your app will display some details about the call, like the duration.
 
 ```javascript
 var callListeners = {
@@ -224,7 +225,7 @@ var callListeners = {
 };
 ```
 
-## Hang Up button
+## Hang up button
 Last but not least, add a click handler for the hang up button:
 ```javascript
 $('#hangupCall').click(function (event) {
@@ -234,18 +235,18 @@ $('#hangupCall').click(function (event) {
 ```
 
 ## Run it
-Either you push this file to a webserver or run it locally. To give chrome access to your microphone you need to launch it with with the flag --allow-file-access-from-files
-On Windows open a command prompt and type 
-```pathtochrome%\chrome yourfilename.html --allow-file-access-from-files```
-on Mac 
-```open -a Google\Chrome yourfilename.html --args --allow-file-access-from-files```
-For this to work, make sure to quit chrome completely before re-opening from the command line.
-Complete source code can be found at [https://github.com/sinch/js-calling-tutorial](https://github.com/sinch/js-calling-tutorial)
+Either push this file to a webserver or run it locally. To give Chrome access to your microphone, launch it with with the flag --allow-file-access-from-files.
+On Windows, open a command prompt and type: 
+```pathtochrome%\chrome yourfilename.html --allow-file-access-from-files```.
+On Mac:
+```open -a Google\Chrome yourfilename.html --args --allow-file-access-from-files```.
+For this to work, make sure to quit Chrome completely before reopening from the command line.
+Complete source code can be found at [https://github.com/sinch/js-calling-tutorial](https://github.com/sinch/js-calling-tutorial).
 
 ## Summary
-Now you have a good understanding of how the Sinch client works, and how to make a call with the Sinch client. The next steps will be to add your own authentication and make it more secure with the Sinch REST API.
+Now you have a good understanding of how the Sinch client works and how to make a call with it. What’s next? Add your own authentication and make it more secure with the Sinch REST API.
 
-Further reading:
+More reading:
+
 - [Custom authentication with .net](http://www.sinch.com/tutorials/using-delegated-security-application-server-using-c-sinch-sdk/)
-- [Use the sinch JS SDK to build a messaging app](http://www.sinch.com/tutorials/build-instant-messaging-app-sinch-javascript/)
-
+- [Use the Sinch JS SDK to build a messaging app](http://www.sinch.com/tutorials/build-instant-messaging-app-sinch-javascript/)
